@@ -63,6 +63,7 @@ def main():
                     print(cls)
             if j == 'spec_machine':
                 cls = Specmachine(i[0], i[1], i[3], carrying=i[5], extra=i[6])
+                print(cls)
 
 
 def __repr__(self):
