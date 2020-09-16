@@ -37,6 +37,7 @@ class Specmachine(Carbase):
 
 def get_car_list(filename):
     car_list = []
+    car_list_obj = []
     with open(filename, 'r', encoding="utf-8") as f:
         for line in f:
             line = line.replace('\n', '').split(';')
@@ -44,31 +45,29 @@ def get_car_list(filename):
                 pass
             else:
                 car_list.append(line)
-    return car_list
-
-
-def main():
-    car_list = get_car_list('solution.txt')
-    cls = ''
     for i in car_list:
         for j in i:
             if j == 'car':
                 cls = Car(i[0], i[1], passenger_seat_count=i[2], carrying=i[5], photo_le_name=i[3])
-                print(cls)
+                car_list_obj.append(cls)
             if j == 'truck':
                 if i[4] == '':
                     pass
                 else:
                     cls = Truck(i[0], brand=[1], photo_le_name=i[3], body_whl=i[4], carrying=i[5])
-                    print(cls)
+                    car_list_obj.append(cls)
             if j == 'spec_machine':
                 cls = Specmachine(i[0], i[1], i[3], carrying=i[5], extra=i[6])
-                print(cls)
+                car_list_obj.append(cls)
+    return car_list_obj
 
 
-def __repr__(self):
-    return self.cls
 
+def main():
+    get_car_list('solution.txt')
+    print(get_car_list('solution.txt'))
 
 if __name__ == '__main__':
     main()
+
+
