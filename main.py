@@ -3,7 +3,7 @@ class Carbase:
         self.car_type = car_type
         self.brand = brand
         self.photo_le_name = photo_le_name
-        self.carrying = float(carrying)
+        self.carrying = carrying
 
     def get_photo_le_ext(self):
         type_ = str(self.photo_le_name).split('.')
@@ -48,16 +48,26 @@ def get_car_list(filename):
 
 
 def main():
-    car_list = get_car_list('solution.py')
+    car_list = get_car_list('solution.txt')
+    cls = ''
     for i in car_list:
         for j in i:
-            if j[0] == 'car':
-                cls = Car(j[0], j[1], passenger_seat_count=j[2], carrying=j[4], photo_le_name=j[3])
-            if j[0] == 'truck':
-                cls = Truck(j[0], brand=[1], photo_le_name=j[3], body_whl=j[4], carrying=j[5])
-            if j[0] == 'spec_machine':
-                cls = Specmachine(j[0], j[1], j[3], carrying=j[5], extra=j[6])
-    return cls         
+            if j == 'car':
+                cls = Car(i[0], i[1], passenger_seat_count=i[2], carrying=i[5], photo_le_name=i[3])
+                print(cls)
+            if j == 'truck':
+                if i[4] == '':
+                    pass
+                else:
+                    cls = Truck(i[0], brand=[1], photo_le_name=i[3], body_whl=i[4], carrying=i[5])
+                    print(cls)
+            if j == 'spec_machine':
+                cls = Specmachine(i[0], i[1], i[3], carrying=i[5], extra=i[6])
+
+
+def __repr__(self):
+    return self.cls
+
 
 if __name__ == '__main__':
     main()
